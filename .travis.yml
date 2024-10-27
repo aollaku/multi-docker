@@ -16,10 +16,10 @@ after_success:
 # First login to docker CLI
  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
  # Take those images and push them to docker hub
- - docker push andi/multi-client
- - docker push andi/multi-nginx
- - docker push andi/multi-server
- - docker push andi/multi-worker
+ - docker push aollaku/multi-client
+ - docker push aollaku/multi-nginx
+ - docker push aollaku/multi-server
+ - docker push aollaku/multi-worker
 
 # Update this file to push it again....
 # Please update travis CI..........
