@@ -1,0 +1,15 @@
+sudo: reuqired
+services:
+ - docker
+
+before_install:
+ -docker build -t andi/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+ - docker run -e CI=true andi/react-test npm test
+
+after_success:
+ - docker build -t andi/multi-client ./client
+ - docker build -t andi/multi-nginx ./nginx
+ - docker build -t andi/multi-server ./server
+ - docker build -t andi/multi-worker ./worker
