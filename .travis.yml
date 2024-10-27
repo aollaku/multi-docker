@@ -21,4 +21,4 @@ after_success:
  - docker push andi/multi-server
  - docker push andi/multi-worker
 
-# Update this file to push it again
+# Update this file to push it again.
