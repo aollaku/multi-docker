@@ -3,23 +3,23 @@ services:
  - docker
 
 before_install:
- - docker build -t andi/react-test -f ./client/Dockerfile.dev ./client
+ - docker build -t aollaku/react-test -f ./client/Dockerfile.dev ./client
 
 script:
- - docker run -e CI=true andi/react-test npm test
+ - docker run -e CI=true aollaku/react-test npm test
 
 after_success:
- - docker build -t andi/multi-client ./client
- - docker build -t andi/multi-nginx ./nginx
- - docker build -t andi/multi-server ./server
- - docker build -t andi/multi-worker ./worker
+ - docker build -t aollaku/multi-client ./client
+ - docker build -t aollaku/multi-nginx ./nginx
+ - docker build -t aollaku/multi-server ./server
+ - docker build -t aollaku/multi-worker ./worker
 # First login to docker CLI
  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
  # Take those images and push them to docker hub
- - docker push andi/multi-client
- - docker push andi/multi-nginx
- - docker push andi/multi-server
- - docker push andi/multi-worker
+ - docker push aollaku/multi-client
+ - docker push aollaku/multi-nginx
+ - docker push aollaku/multi-server
+ - docker push aollaku/multi-worker
 
 # Update this file to push it again....
 # Please update travis CI....
