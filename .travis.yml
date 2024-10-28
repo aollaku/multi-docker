@@ -8,7 +8,7 @@ before_install:
 
 script:
 # -e CI=TRUE is to run the test all the time without exit.
- - docker run -e CI=true aollaku/client-test test npm test
+ - docker run -e CI=true aollaku/client-test npm test
 
 after_success:
 
