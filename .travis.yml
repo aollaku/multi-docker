@@ -7,7 +7,7 @@ before_install:
   - docker build -t aollaku/client-test -f ./client/Dockerfile.dev ./client
 
 script:
-
+# -e CI=TRUE is to run the test all the time without exit.
  - docker run -e CI=true aollaku/client test npm test
 
 after_success:
@@ -17,5 +17,13 @@ after_success:
  - docker build -t aollaku/nginx ./nginx
  - docker build -t aollaku/worker ./worker
 
+ # Login to the docker.
+
+ - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+ - docker push aollaku/client
+ - docker push aollaku/server
+ - docker push aollaku/nginx
+ - docker push aollaku/worker
 
   
