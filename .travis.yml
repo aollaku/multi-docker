@@ -12,18 +12,18 @@ script:
 
 after_success:
 
- - docker build -t aollaku/client ./client
- - docker build -t aollaku/server ./server
- - docker build -t aollaku/nginx ./nginx
- - docker build -t aollaku/worker ./worker
+ - docker build -t aollaku/andi-multi-client ./client
+ - docker build -t aollaku/andi-multi-server ./server
+ - docker build -t aollaku/andi-multi-nginx ./nginx
+ - docker build -t aollaku/andi-multi-worker ./worker
 
  # Login to the docker.
 
  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
  # push the build to docker hub
- - docker push aollaku/client
- - docker push aollaku/server
- - docker push aollaku/nginx
- - docker push aollaku/worker
+ - docker push aollaku/andi-multi-client
+ - docker push aollaku/andi-multi-server
+ - docker push aollaku/andi-multi-nginx
+ - docker push aollaku/andi-multi-worker
 
-  
+  # End of this file
