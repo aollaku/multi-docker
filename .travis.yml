@@ -21,6 +21,7 @@ after_success:
 
  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
  # push the build to docker hub
+ 
  - docker push aollaku/andi-multi-client
  - docker push aollaku/andi-multi-server
  - docker push aollaku/andi-multi-nginx
