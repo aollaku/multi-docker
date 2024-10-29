@@ -27,4 +27,18 @@ after_success:
  - docker push aollaku/andi-multi-nginx
  - docker push aollaku/andi-multi-worker
 
-  # End of this file
+  # Create access key and secret access key for AWS on Travis CI variables and add those variables here.
+
+deploy:
+ provider: elasticbeanstalk
+ region: eu-north-1
+ app: multi-docker
+ env: Multi-docker-env
+ bucket_name: elasticbeanstalk-eu-north-1-715841334298
+ bucket_path: docker-multi
+
+on:
+   branch: master
+   access_key_id: $AWS_ACCESS_KEY
+   secret_access_key:
+     secure: $AWS_SECRET_KEY
