@@ -29,13 +29,13 @@ after_success:
 
   # Create access key and secret access key for AWS on Travis CI variables and add those variables here.
 
-#deploy:
- #provider: elasticbeanstalk
- #region: eu-north-1
- #app: multi-docker
- #env: Multi-docker-env
- #bucket_name: elasticbeanstalk-eu-north-1-715841334298
- #bucket_path: docker-multi
+deploy:
+ provider: elasticbeanstalk
+ region: eu-north-1
+ app: multi-docker
+ env: Multi-docker-env
+ bucket_name: elasticbeanstalk-eu-north-1-715841334298
+ bucket_path: docker-multi
 
 #on:
   #branch: master
