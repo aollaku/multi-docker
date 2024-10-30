@@ -27,5 +27,3 @@ after_success:
  - docker push aollaku/andi-multi-nginx
  - docker push aollaku/andi-multi-worker
 
-  # Create access key and secret access key for AWS on Travis CI variables and add those variables here.
-
