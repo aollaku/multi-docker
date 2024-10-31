@@ -37,11 +37,11 @@ deploy:
  bucket_name: elasticbeanstalk-eu-north-1-715841334298
  bucket_path: multi-docker
 
- on:
-  branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key:
-   secure: "$AWS_SECRET_KEY"
+ #on:
+  #branch: master
+  #access_key_id: "$AWS_ACCESS_KEY"
+  #secret_access_key:
+      #secure: "$AWS_SECRET_KEY"
 
    # Update continue ............
     
