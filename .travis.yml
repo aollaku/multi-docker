@@ -29,6 +29,10 @@ after_success:
 
   # Create access key and secret access key for AWS on Travis CI variables and add those variables here.
 
+before_deploy:
+  - echo $AWS_ACCESS_KEY_ID
+  - echo $AWS_SECRET_ACCESS_KEY
+
 deploy:
  provider: elasticbeanstalk
  region: 'eu-north-1'
