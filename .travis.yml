@@ -42,10 +42,10 @@ deploy:
  bucket_path: 'multi-docker'
 
  on:
-  branch: master
-  access_key_id: $access_key_id
-  secret_access_key:
-      secure: $secret_access_key
+   branch: main
+ access_key_id: $access_key_id
+ secret_access_key: $secret_access_key
+      
 
       #.....
 
