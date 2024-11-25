@@ -35,13 +35,11 @@ before_deploy:
 
 deploy:
  provider: elasticbeanstalk
- edge: true
- debug: true
- region: 'eu-north-1'
- app: 'multi-docker'
- env: 'Multi-docker-env'
- bucket_name: 'elasticbeanstalk-eu-north-1-715841334298'
- bucket_path: 'multi-docker'
+ region: eu-north-1
+ app: multi-docker
+ env: Multi-docker-env
+ bucket_name: elasticbeanstalk-eu-north-1-715841334298
+ bucket_path: multi-docker
 
  on:
    branch: master
