@@ -35,6 +35,8 @@ before_deploy:
 
 deploy:
  provider: elasticbeanstalk
+ edge: true
+ debug: true
  region: 'eu-north-1'
  app: 'multi-docker'
  env: 'Multi-docker-env'
@@ -42,7 +44,7 @@ deploy:
  bucket_path: 'multi-docker'
 
  on:
-   branch: main
+   branch: master
  access_key_id: $AWS_ACCESS_KEY
  secret_access_key: $AWS_SECRET_KEY
       
