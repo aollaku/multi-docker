@@ -5,6 +5,9 @@ services:
 before_install:
   
   - docker build -t aollaku/client-test -f ./client/Dockerfile.dev ./client
+  - docker build -t aollaku/andi-multi-server ./server
+  - docker build -t aollaku/andi-multi-nginx ./nginx
+  - docker build -t aollaku/andi-multi-worker ./worker
 
 script:
 # -e CI=TRUE is to run the test all the time without exit.
