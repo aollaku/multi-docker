@@ -5,11 +5,8 @@ services:
 before_install:
   
   - docker build -t aollaku/client-test -f ./client/Dockerfile.dev ./client
-  - docker build -t aollaku/andi-multi-server ./server
-  - docker build -t aollaku/andi-multi-nginx ./nginx
-  - docker build -t aollaku/andi-multi-worker ./worker
-
-script:
+ 
+ script:
 # -e CI=TRUE is to run the test all the time without exit.
  - docker run -e CI=true aollaku/client-test npm test
 
@@ -32,18 +29,19 @@ after_success:
 
   # Create access key and secret access key for AWS on Travis CI variables and add those variables here.
 
-#deploy:
- #provider: elasticbeanstalk
- #region: eu-north-1
- #app: multi-docker
- #env: Multi-docker-env
- #bucket_name: elasticbeanstalk-eu-north-1-715841334298
- #bucket_path: multi-docker
+deploy:
+ provider: elasticbeanstalk
+ region: "eu-north-1"
+ app: "multi-docker"
+ env: "Multi-docker-env"
+ bucket_name: "elasticbeanstalk-eu-north-1-715841334298"
+ bucket_path: "multi-docker"
 
- #on:
-  # branch: master
- #access_key_id: $AWS_ACCESS_KEY
- #secret_access_key: $AWS_SECRET_KEY
+ on:
+   branch: master
+ access_key_id: $AWS_ACCESS_KEY
+ secret_access_key: 
+   secure: $AWS_SECRET_KEY
       
 
       #.............. 
