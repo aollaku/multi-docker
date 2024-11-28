@@ -1,6 +1,6 @@
 {
-     "AWSEBDockerrunVersion": 1,
-     "contanierDefinitions": [
+     "AWSEBDockerrunVersion": "3",
+     "containerDefinitions": [
         {
             "name": "client",
             "image": "aollaku/andi-multi-client",
