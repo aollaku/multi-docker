@@ -1,50 +1,36 @@
-sudo: required
 services:
- - docker
+  - docker
 
 before_install:
-  
   - docker build -t aollaku/client-test -f ./client/Dockerfile.dev ./client
- 
- script:
-# -e CI=TRUE is to run the test all the time without exit.
- - docker run -e CI=true aollaku/client-test npm test
+
+script:
+  # -e CI=true ensures tests run without interactive input
+  - docker run -e CI=true aollaku/client-test npm test
 
 after_success:
+  - docker build -t aollaku/andi-multi-client ./client
+  - docker build -t aollaku/andi-multi-server ./server
+  - docker build -t aollaku/andi-multi-nginx ./nginx
+  - docker build -t aollaku/andi-multi-worker ./worker
 
- - docker build -t aollaku/andi-multi-client ./client
- - docker build -t aollaku/andi-multi-server ./server
- - docker build -t aollaku/andi-multi-nginx ./nginx
- - docker build -t aollaku/andi-multi-worker ./worker
+  # Login to Docker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
- # Login to the docker.
-
- - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
- # push the build to docker hub
- 
- - docker push aollaku/andi-multi-client
- - docker push aollaku/andi-multi-server
- - docker push aollaku/andi-multi-nginx
- - docker push aollaku/andi-multi-worker
-
-  # Create access key and secret access key for AWS on Travis CI variables and add those variables here.
+  # Push images to Docker Hub
+  - docker push aollaku/andi-multi-client
+  - docker push aollaku/andi-multi-server
+  - docker push aollaku/andi-multi-nginx
+  - docker push aollaku/andi-multi-worker
 
 deploy:
- provider: elasticbeanstalk
- region: eu-north-1
- app: multi-docker
- env: Multi-docker-env
- bucket_name: elasticbeanstalk-eu-north-1-715841334298
- bucket_path: multi-docker
-
- on:
-   branch: master
-   access_key_id: $AWS_ACCESS_KEY
-   secret_access_key: $AWS_SECRET_KEY
-      
-
-      #.............. 
-      #This is the fourth buuld
-
-
-    
+  provider: elasticbeanstalk
+  region: eu-north-1
+  app: multi-docker
+  env: Multi-docker-env
+  bucket_name: elasticbeanstalk-eu-north-1-715841334298
+  bucket_path: multi-docker
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  on:
+    branch: master
